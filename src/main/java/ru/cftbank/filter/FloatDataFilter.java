@@ -5,9 +5,7 @@ import ru.cftbank.WriteType;
 
 import java.nio.file.Path;
 import java.util.DoubleSummaryStatistics;
-import java.util.IntSummaryStatistics;
 import java.util.List;
-import java.util.Objects;
 
 public class FloatDataFilter extends DataFilter {
 
