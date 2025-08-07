@@ -38,17 +38,23 @@ public class FloatDataFilter extends DataFilter {
                 DoubleSummaryStatistics stats = resultStringList.stream()
                         .mapToDouble(Double::parseDouble)
                         .summaryStatistics();
-                statistic.append("- Максимальное значение равно ").append(stats.getMax()).append('\n');
-                statistic.append("- Минимальное значение равно ").append(stats.getMin()).append('\n');
-                statistic.append("- Среднее значение равно ").append(stats.getAverage()).append('\n');
-                statistic.append("- Сумма всех элементов равна ").append(stats.getSum()).append('\n');
+                statistic.append("- Максимальное значение равно ").append(stats.getMax()).append(";\n");
+                statistic.append("- Минимальное значение равно ").append(stats.getMin()).append(";\n");
+                statistic.append("- Среднее значение равно ").append(stats.getAverage()).append(";\n");
+                statistic.append("- Сумма всех элементов равна ").append(stats.getSum()).append(";\n");
             }
-            statistic.append(String.format("- Количество элементов, записанных в файл %s, равно %d",
+            statistic.append(String.format("- Количество элементов, записанных в файл %s, равно %d.",
                     getResultFilePath(),
                     resultStringList.size()));
         }else{
-            statistic.append("Фильтр не нашел подходящих строк в файлах");
+            statistic.append("- Фильтр не нашел подходящих строк в файлах.");
         }
             return statistic.toString();
+    }
+
+
+    @Override
+    public String toString(){
+        return "Фильтр чисел с плавающей точкой";
     }
 }

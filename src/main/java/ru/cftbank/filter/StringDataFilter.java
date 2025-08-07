@@ -39,22 +39,27 @@ public class StringDataFilter extends DataFilter{
 
                 if(maxLengthStringOptional.isPresent()){
                     String maxLengthString = maxLengthStringOptional.get();
-                    statistic.append(String.format("Самая длинная строка %s (длина %d)",maxLengthString,maxLengthString.length())).append("\n");
+                    statistic.append(String.format("- Самая длинная строка %s (длина %d);",maxLengthString,maxLengthString.length())).append("\n");
                 }
                 if(minLengthStringOptional.isPresent()){
                     String minLengthString = minLengthStringOptional.get();
-                    statistic.append(String.format("Самая короткая строка %s (длина %d)",minLengthString,minLengthString.length())).append("\n");
+                    statistic.append(String.format("- Самая короткая строка %s (длина %d);",minLengthString,minLengthString.length())).append("\n");
 
                 }
             }
 
-            statistic.append(String.format("- Количество элементов, записанных в файл %s, равно %d",
+            statistic.append(String.format("- Количество элементов, записанных в файл %s, равно %d.",
                     getResultFilePath(),
                     resultStringList.size()));
         }else{
-            statistic.append("Фильтр не нашел подходящих строк в файлах");
+            statistic.append("- Фильтр не нашел подходящих строк в файлах.");
         }
 
         return statistic.toString();
+    }
+
+    @Override
+    public String toString(){
+        return "Фильтр строк";
     }
 }

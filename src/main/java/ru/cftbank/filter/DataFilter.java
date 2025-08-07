@@ -7,21 +7,25 @@ import ru.cftbank.utils.FileController;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public abstract class DataFilter {
 
-    private List<String> resultStringList;
-    private Path resultFilePath;
-    private WriteType writeType;
+    private final  List<String> resultStringList;
+    private final Path resultFilePath;
+    private final WriteType writeType;
 
-    public DataFilter(Path resultFilePath,WriteType writeType) {
+    protected DataFilter(Path resultFilePath,WriteType writeType) {
         this.resultFilePath = resultFilePath;
         this.writeType = writeType;
         this.resultStringList = new ArrayList<>();
     }
 
     public void filter(String filePath) throws IOException{
+        if (filePath == null) {
+            throw new IllegalArgumentException("File path cannot be null");
+        }
         List<String> strings = FileController.getStringArray(filePath);
         for(String string : strings){
             if (isCorrectString(string)){
@@ -45,13 +49,9 @@ public abstract class DataFilter {
     protected abstract String buildStatistic(StatisticType statisticType);
 
     public List<String> getResultStringList() {
-        return resultStringList;
+        return Collections.unmodifiableList(resultStringList);
     }
 
-
-    protected void setResultStringList(List<String> resultStringList) {
-
-    }
 
     public Path getResultFilePath() {
         return resultFilePath;
