@@ -58,7 +58,7 @@ public class ParameterController {
                         break;
 
                     default:
-                        errors.append("Ошибка! Неизвестный параметр: ").append(arg).append(".\n");
+                        warnings.append("Внимание! Неизвестный параметр: ").append(arg).append(". Он будет проигнорирован.\n");
                 }
             } else {
                 inputFileNames.add(arg);
