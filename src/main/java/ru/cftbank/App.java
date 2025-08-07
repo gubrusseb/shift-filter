@@ -16,7 +16,6 @@ public class App {
 
     private static ParameterController parameterController;
     public static void main(String[] args){
-        System.out.println(Arrays.toString(args));
         parameterController = new ParameterController(args);
         parameterController.outputInfo();
 
