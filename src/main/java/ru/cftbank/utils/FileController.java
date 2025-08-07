@@ -29,7 +29,7 @@ public class FileController {
         }
 
         if (Files.exists(filePath) && !Files.isWritable(filePath)) {
-            throw new IOException("Нет прав на запись в файл: " + filePath);
+            throw new IOException("Ошибка! Нет прав на запись в файл: " + filePath + ".");
         }
 
         FileWriter fileWriter;
@@ -41,7 +41,7 @@ public class FileController {
                 fileWriter = new FileWriter(filePath.toFile(),false);
                 break;
             default:
-                throw new IOException("Ошибка типа записи данных");
+                throw new IOException("Ошибка! Неверный тип записи данных.");
         }
 
         try(BufferedWriter writer = new BufferedWriter(fileWriter)) {

@@ -43,7 +43,7 @@ public class ParameterController {
 
                     case "-o":
                         if (!hasArgument(args, i)) {
-                            errors.append("Ошибка! После параметра -o отсутствует путь для результатов\n");
+                            errors.append("Ошибка! После параметра -o отсутствует путь для результатов.\n");
                         } else {
                             resultPath = resultPath.resolve(args[++i]);
                         }
@@ -51,22 +51,26 @@ public class ParameterController {
 
                     case "-p":
                         if (!hasArgument(args, i)) {
-                            errors.append("Ошибка! После параметра -p отсутствует префикс\n");
+                            errors.append("Ошибка! После параметра -p отсутствует префикс.\n");
                         } else {
                             prefix = args[++i];
                         }
                         break;
 
                     default:
-                        errors.append("Ошибка! Неизвестный параметр: ").append(arg).append("\n");
+                        errors.append("Ошибка! Неизвестный параметр: ").append(arg).append(".\n");
                 }
             } else {
                 inputFileNames.add(arg);
             }
         }
+        if(inputFileNames.isEmpty()){
+            errors.append("Ошибка! Необходимо передать хотя бы одно имя файла.");
+        }
         if (errors.length() > 0) {
             throw new RuntimeException(errors.toString());
         }
+
     }
 
     public  List<String> getInputFileNames() {
