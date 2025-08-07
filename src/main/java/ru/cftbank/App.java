@@ -78,7 +78,11 @@ public class App {
     private static void outputStatistic(List<DataFilter> dataFilters) {
         for(DataFilter dataFilter : dataFilters){
             System.out.println(dataFilter);
+            if(dataFilter.isSaved()){
             System.out.println(dataFilter.getStatistic(parameterController.getStatisticType()));
+            }else{
+                System.out.println("- Фильтр не смог сохранить данные в файл.");
+            }
             System.out.println();
         }
     }
