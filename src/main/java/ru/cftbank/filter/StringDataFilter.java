@@ -39,11 +39,11 @@ public class StringDataFilter extends DataFilter{
 
                 if(maxLengthStringOptional.isPresent()){
                     String maxLengthString = maxLengthStringOptional.get();
-                    statistic.append(String.format("- Самая длинная строка %s (длина %d);",maxLengthString,maxLengthString.length())).append("\n");
+                    statistic.append(String.format("- Самая длинная строка: \"%s\" (длина %d);",maxLengthString,maxLengthString.length())).append("\n");
                 }
                 if(minLengthStringOptional.isPresent()){
                     String minLengthString = minLengthStringOptional.get();
-                    statistic.append(String.format("- Самая короткая строка %s (длина %d);",minLengthString,minLengthString.length())).append("\n");
+                    statistic.append(String.format("- Самая короткая строка: \"%s\" (длина %d);",minLengthString,minLengthString.length())).append("\n");
 
                 }
             }
