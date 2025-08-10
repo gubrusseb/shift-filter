@@ -17,7 +17,7 @@ public class IntDataFilter extends DataFilter{
     @Override
     protected boolean isCorrectString(String string) {
         try{
-            Integer.parseInt(string);
+            Long.parseLong(string);
         } catch (NumberFormatException e) {
             return false;
         }
