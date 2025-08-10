@@ -1,12 +1,13 @@
 package ru.cftbank;
 
 import ru.cftbank.filter.DataFilter;
-import ru.cftbank.filter.FloatDataFilter;
-import ru.cftbank.filter.IntDataFilter;
+import ru.cftbank.filter.DecimalDataFilter;
+import ru.cftbank.filter.IntegerDataFilter;
 import ru.cftbank.filter.StringDataFilter;
 import ru.cftbank.utils.ParameterController;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.List;
@@ -44,8 +45,8 @@ public class App {
         WriteType writeType = parameterController.getWriteType();
 
         return Arrays.asList(
-                new IntDataFilter(fullPath.resolve( prefix + "integers.txt"),writeType),
-                new FloatDataFilter(fullPath.resolve(prefix + "floats.txt"),writeType),
+                new IntegerDataFilter(fullPath.resolve( prefix + "integers.txt"),writeType),
+                new DecimalDataFilter(fullPath.resolve(prefix + "floats.txt"),writeType),
                 new StringDataFilter(fullPath.resolve(prefix + "strings.txt"),writeType));
     }
 
