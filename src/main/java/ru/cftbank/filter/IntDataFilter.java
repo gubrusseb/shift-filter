@@ -5,8 +5,8 @@ import ru.cftbank.StatisticType;
 import ru.cftbank.WriteType;
 
 import java.nio.file.Path;
-import java.util.IntSummaryStatistics;
 import java.util.List;
+import java.util.LongSummaryStatistics;
 
 public class IntDataFilter extends DataFilter{
 
@@ -17,7 +17,7 @@ public class IntDataFilter extends DataFilter{
     @Override
     protected boolean isCorrectString(String string) {
         try{
-            Integer.parseInt(string);
+            Long.parseLong(string);
         } catch (NumberFormatException e) {
             return false;
         }
@@ -31,8 +31,8 @@ public class IntDataFilter extends DataFilter{
         List<String> resultStringList = getResultStringList();
         if(!resultStringList.isEmpty()){
             if (statisticType == StatisticType.FULL) {
-                IntSummaryStatistics stats = resultStringList.stream()
-                        .mapToInt(Integer::parseInt)
+                LongSummaryStatistics stats = resultStringList.stream()
+                        .mapToLong(Long::parseLong)
                         .summaryStatistics();
                 statistic.append("- Максимальное значение равно ").append(stats.getMax()).append(";\n");
                 statistic.append("- Минимальное значение равно ").append(stats.getMin()).append(";\n");
