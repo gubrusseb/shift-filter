@@ -26,34 +26,36 @@ public class StringDataFilter extends DataFilter{
 
     @Override
     protected String buildStatistic(StatisticType statisticType) {
+        List<String> resultStringList = getResultStringList();
+
+        if(resultStringList.isEmpty()){
+            return "- Фильтр не нашел подходящих строк в файлах.";
+        }
+
         StringBuilder statistic = new StringBuilder();
 
-        List<String> resultStringList = getResultStringList();
-        if(!resultStringList.isEmpty()){
-            if(statisticType == StatisticType.FULL){
-                Optional<String> maxLengthStringOptional = resultStringList.stream()
-                        .max(Comparator.comparingInt(String::length));
+        if(statisticType == StatisticType.FULL){
+            Optional<String> maxLengthStringOptional = resultStringList.stream()
+                    .max(Comparator.comparingInt(String::length));
 
-                Optional<String> minLengthStringOptional = resultStringList.stream()
-                        .min(Comparator.comparingInt(String::length));
+            Optional<String> minLengthStringOptional = resultStringList.stream()
+                    .min(Comparator.comparingInt(String::length));
 
-                if(maxLengthStringOptional.isPresent()){
-                    String maxLengthString = maxLengthStringOptional.get();
-                    statistic.append(String.format("- Самая длинная строка: \"%s\" (длина %d);",maxLengthString,maxLengthString.length())).append("\n");
-                }
-                if(minLengthStringOptional.isPresent()){
-                    String minLengthString = minLengthStringOptional.get();
-                    statistic.append(String.format("- Самая короткая строка: \"%s\" (длина %d);",minLengthString,minLengthString.length())).append("\n");
-
-                }
+            if(maxLengthStringOptional.isPresent()){
+                String maxLengthString = maxLengthStringOptional.get();
+                statistic.append(String.format("- Самая длинная строка: \"%s\" (длина %d);",maxLengthString,maxLengthString.length())).append("\n");
             }
+            if(minLengthStringOptional.isPresent()){
+                String minLengthString = minLengthStringOptional.get();
+                statistic.append(String.format("- Самая короткая строка: \"%s\" (длина %d);",minLengthString,minLengthString.length())).append("\n");
 
-            statistic.append(String.format("- Количество элементов, записанных в файл %s, равно %d.",
-                    getResultFilePath(),
-                    resultStringList.size()));
-        }else{
-            statistic.append("- Фильтр не нашел подходящих строк в файлах.");
+            }
         }
+
+        statistic.append(String.format("- Количество элементов, записанных в файл %s, равно %d.",
+                getResultFilePath(),
+                resultStringList.size()));
+
 
         return statistic.toString();
     }

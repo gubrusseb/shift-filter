@@ -29,12 +29,14 @@ public class DecimalDataFilter extends DataFilter {
 
     @Override
     protected String buildStatistic(StatisticType statisticType) {
-        StringBuilder statistic = new StringBuilder();
+
         List<String> resultStringList = getResultStringList();
 
         if(resultStringList.isEmpty()){
-            statistic.append("- Фильтр не нашел подходящих строк в файлах.");
+            return "- Фильтр не нашел подходящих строк в файлах.";
         }
+
+        StringBuilder statistic = new StringBuilder();
 
         BigDecimal sum = new BigDecimal(resultStringList.get(0));
         BigDecimal max = sum;
