@@ -6,7 +6,6 @@ import ru.cftbank.WriteType;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.math.BigInteger;
 import java.math.RoundingMode;
 import java.nio.file.Path;
 import java.util.List;

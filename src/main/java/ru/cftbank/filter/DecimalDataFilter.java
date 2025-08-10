@@ -6,7 +6,6 @@ import ru.cftbank.WriteType;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.nio.file.Path;
-import java.util.DoubleSummaryStatistics;
 import java.util.List;
 
 public class DecimalDataFilter extends DataFilter {
